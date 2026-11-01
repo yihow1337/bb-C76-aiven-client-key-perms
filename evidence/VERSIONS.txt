@@ -1,0 +1,7 @@
+repo: https://github.com/aiven/aiven-client
+asset_scope: github.com/Aiven (Aiven Bugcrowd)
+vulnerable_tag: 4.18.0
+vulnerable_commit: 268cc1df13eed28ba37c2527f2a1e18a9d384cf1
+pypi: aiven-client 4.18.0 uploaded 2026-09-01T09:14:21
+unreleased_fix: 34e98224a94444f25864c00d0909fa457e889b59 (2026-09-22) — os.chmod(0o600) before write
+merge: 234f1c6 Merge pull request #480 from kta1kri/chmod-downloaded-service-key

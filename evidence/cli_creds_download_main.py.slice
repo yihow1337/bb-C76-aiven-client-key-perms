@@ -1,0 +1,31 @@
+                "The value passed as argument --username does not match any service user,\n"
+                + "therefore the service certificate key pair cannot be obtained.\n\n"
+                + "To get the service users and their passwords, type:\n"
+                + "   avn service user-list --format '{{username}} {{password}}' --project {} {}".format(
+                    project_name, self.args.service_name
+                )
+            )
+
+        else:
+            user = matched_service_users[0]
+            cert = user.get("access_cert")
+            if cert is None:
+                missing_user_items.append("certificate")
+            else:
+                with open(os.path.join(self.args.target_directory, "service.cert"), "w", encoding="utf-8") as fp:
+                    os.chmod(fp.name, 0o600)
+                    fp.write(cert)
+                downloaded_items.append("certificate")
+
+            key = user.get("access_key")
+            if key is None:
+                missing_user_items.append("key")
+            else:
+                with open(os.path.join(self.args.target_directory, "service.key"), "w", encoding="utf-8") as fp:
+                    os.chmod(fp.name, 0o600)
+                    fp.write(key)
+                downloaded_items.append("key")
+
+            if downloaded_items:
+                print("Downloaded to directory '{}': {}".format(self.args.target_directory, ", ".join(downloaded_items)))
+                print()

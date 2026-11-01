@@ -1,0 +1,1 @@
+PASS: vuln=0644 fixed=0600
